@@ -1,0 +1,39 @@
+delimiter //
+
+Trigger 1:
+
+mysql> create trigger sum_salary before update on Employees for each row begin if new.salary<50000 then set new.salary=50000; elseif new.salary is NULL then set new.salary=50000; end if; set @sumsalary=@sumsalary+new.salary; end;//
+Query OK, 0 rows affected (0.32 sec)
+
+mysql> delimiter ;
+mysql> update Employees set salary=75000 where eid=4;
+Query OK, 1 row affected (0.28 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select @sumsalary;
++------------+
+| @sumsalary |
++------------+
+|      75000 |
++------------+
+1 row in set (0.00 sec)
+
+
+Trigger 3:
+
+delimiter //
+mysql> create trigger sum_salary before update on Employees for each row begin if new.salary<50000 then set new.salary=50000; elseif new.salary is NULL then set new.salary=50000; end if; set @sumsalary=@sumsalary+new.salary; end;//
+Query OK, 0 rows affected (0.32 sec)
+
+mysql> delimiter ;
+mysql> update Employees set salary=75000 where eid=4;
+Query OK, 1 row affected (0.28 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select @sumsalary;
++------------+
+| @sumsalary |
++------------+
+|      75000 |
++------------+
+1 row in set (0.00 sec)

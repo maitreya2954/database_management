@@ -1,0 +1,27 @@
+select aname from aircraft where aircraft.aid in (select c.aid from certified c,employees e where c.eid=e.eid and salary>80000)
+select c.eid,max(cruisingrange) from certified c,aircraft a where c.aid=a.aid group by c.eid having count(*)>3
+select e.ename from employees e where salary < (select min(price) from flight where frm like 'Ba%' and too like 'Mu%')
+select ename from employees e,aircraft a,flight f,certified c where a.aid=c.aid and e.eid=c.eid and aname='Boieng' and frm='Bangalore' and distance=(select max(distance) from flight where frm='Bnagalore')
+select  f.too,f.frm from employees e,certified c,aircraft a,flight f where  e.eid=c.eid and c.aid=a.aid and a.aid=f.aid and e.salary>50000 
+select ename from employees where eid in (select c.eid from certified c,aircraft a where a.aid=c.aid and a.aname not like 'Boe%' and cruisingrange>3000)
+select c.salary-avg(e.salary) from employees e,employees c group by c.eid
+select ename,salary from employees where salary > (select avg(salary) from employees)
+select ename from employees e where e.eid in (select c.eid from certified c,aircraft a where c.aid=a.aid and cruisingrange>1000)
+select ename from employees e where e.eid in (select c.eid from certified c,aircraft a where c.aid=a.aid and cruisingrange<1000 group by c.eid having count(*)>=2)
+select ename from employees e where e.eid in (select c.eid from certified c,aircraft a where c.aid=a.aid and cruisingrange>1000 and aname like 'Boe%')
+select e.eid from employees e where e.eid in (select c.eid from certified c,aircraft a where c.aid=a.aid and  aname like 'Boe%')
+select ename from employees e where e.eid in (select c.eid from certified c,aircraft a where c.aid=a.aid and  aname like 'Boe%')
+select aid from aircraft where cruisingrange > (select distance from flight where frm like 'Ba%' and too like 'Ma%')
+select c.salary-avg(e.salary) from employees e,employees c group by c.eid
+select ename,salary from employees where salary > (select avg(salary) from employees)
+select ename from employees where salary = (select max(salary) from employees)
+select e1.ename from employees e1 where e1.salary = (select max(e2.salary) from employees e2 where e2.salary != (select max(e3.salary) from employees e3))
+select * from temp
+select eid from temp where count= (select max(count) from temp)
+select c.eid from certified c group by c.eid having count(*) = 3
+select *from sal
+select sum(salary) from sal
+select f1.frm,f2.frm "Inter",f3.frm "Inter 2",f3.too "Destination" from flight f1,flight f2,flight f3 where f1.too=f2.frm and f2.too=f3.frm and f1.frm like 'Ban%' and f3.too like 'Fra%'
+select f1.frm,f2.frm "Inter",f2.too "Destination" from flight f1,flight f2 where f1.too=f2.frm and f1.frm like 'Ban%' and f2.too like 'Fra%'
+
+

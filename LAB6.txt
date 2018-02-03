@@ -1,0 +1,333 @@
+mysql> select lower("123456") where lower("123")=upper("123");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where lower("123")=upper("123")' at line 1
+mysql> select lower("123456") from Employee where lower("123")=upper("123");
++-----------------+
+| lower("123456") |
++-----------------+
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select lower("123456") from Employee where lower("123a")=upper("123a");
++-----------------+
+| lower("123456") |
++-----------------+
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select lower("123a");
++---------------+
+| lower("123a") |
++---------------+
+| 123a          |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select upper("123a");
++---------------+
+| upper("123a") |
++---------------+
+| 123A          |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select lower("123456") from Employee where lower("123a") like upper("123a");
++-----------------+
+| lower("123456") |
++-----------------+
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select lower("123456") from Employee where lower("123a")== upper("123a");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== upper("123a")' at line 1
+mysql> select lower("123456") from Employee where STRCMP(lower("123a"),upper("123a"))=0;
++-----------------+
+| lower("123456") |
++-----------------+
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
+| 123456          |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select STRCMP("123A","123a");
++-----------------------+
+| STRCMP("123A","123a") |
++-----------------------+
+|                     0 |
++-----------------------+
+1 row in set (0.01 sec)
+
+mysql> select STRCMP('123A','123a');
++-----------------------+
+| STRCMP('123A','123a') |
++-----------------------+
+|                     0 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select STRCMP('A','a');
++-----------------+
+| STRCMP('A','a') |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select STRCMP('A','A');
++-----------------+
+| STRCMP('A','A') |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select STRCMP(a,a);
+ERROR 1054 (42S22): Unknown column 'a' in 'field list'
+mysql> select STRCMP('A','aa');
++------------------+
+| STRCMP('A','aa') |
++------------------+
+|               -1 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select STRCMP('A','a');
++-----------------+
+| STRCMP('A','a') |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> tee LAB6.txt
+mysql> select 0&1;
++-----+
+| 0&1 |
++-----+
+|   0 |
++-----+
+1 row in set (0.00 sec)
+
+mysql> select 0|1;
++-----+
+| 0|1 |
++-----+
+|   1 |
++-----+
+1 row in set (0.00 sec)
+
+mysql> select 0^1;
++-----+
+| 0^1 |
++-----+
+|   1 |
++-----+
+1 row in set (0.00 sec)
+
+mysql> ^C
+mysql> select * from Employee;
++----------+----------+------------+-------------+------------+--------+----------+-------------+------+------------+---------------+------+
+| fname    | mname    | lname      | ssn         | DOB        | Gender | salary   | superssn    | dno  | MOBILE_NO  | Address       | sno  |
++----------+----------+------------+-------------+------------+--------+----------+-------------+------+------------+---------------+------+
+| Trishul  | krishna  | Cool       | 23-100-1234 | 18-11-1997 | Male   |     9223 | 23-434-2376 |   12 | 9866074135 | Chennai,India |    1 |
+| Balaji   | krishna  | Sarvana    | 23-434-1234 | 18-06-1993 | Male   |     9223 | 23-434-2376 |    6 | 9966730733 | Chennai,India |    2 |
+| Eashan   | kumar    | Dash       | 23-434-2343 | 15-08-1997 | Male   |   160492 | 23-434-2376 |   10 | 9542869730 | Chennai,India |    3 |
+| Maitreya | Siddarth | Rayabharam | 23-434-2376 | 28-06-1998 | Male   |   406192 | 32-423-4535 |   13 | 9790707133 | Chennai,India |    4 |
+| Leela    | krishna  | Abbaraju   | 23-434-2876 | 28-06-1993 | Male   |   406842 | 23-434-2376 |   10 | 8185002522 | Chennai,India |    5 |
+| Kristen  | Mary     | Stewart    | 43-100-1234 | 23-05-1997 | Female |     9223 | 23-434-2376 |   12 | 8185385566 | Chennai,India |    6 |
+| Robert   | Downey   | Junior     | 43-100-2034 | 23-12-1997 | Male   |  1604906 | 23-434-2376 |   10 | 1234567890 | Chennai,India |    7 |
+| Priyanka | Quantico | Chopra     | 90-609-3423 | 28-12-1988 | Female | 11395089 | 23-434-2376 |    7 | 1234888890 | Chennai,India |    8 |
+| Hrithik  |          | Roshan     | 90-800-2034 | 08-02-1998 | Male   |   304789 | 23-434-2376 |    9 | 2525656536 | Chennai,India |    9 |
+| Jennifer |          | Lawrence   | 90-800-2314 | 08-02-1988 | Female |   304789 | 23-434-2376 |   77 | 2525555536 | Chennai,India |   10 |
++----------+----------+------------+-------------+------------+--------+----------+-------------+------+------------+---------------+------+
+10 rows in set (0.00 sec)
+
+mysql> alter Employee add join_date date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Employee add join_date date' at line 1
+mysql> alter Employee add column join_date date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Employee add column join_date date' at line 1
+mysql> alter table Employee add column join_date date;
+Query OK, 0 rows affected (0.69 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employee;
++----------+----------+------------+-------------+------------+--------+----------+-------------+------+------------+---------------+------+-----------+
+| fname    | mname    | lname      | ssn         | DOB        | Gender | salary   | superssn    | dno  | MOBILE_NO  | Address       | sno  | join_date |
++----------+----------+------------+-------------+------------+--------+----------+-------------+------+------------+---------------+------+-----------+
+| Trishul  | krishna  | Cool       | 23-100-1234 | 18-11-1997 | Male   |     9223 | 23-434-2376 |   12 | 9866074135 | Chennai,India |    1 | NULL      |
+| Balaji   | krishna  | Sarvana    | 23-434-1234 | 18-06-1993 | Male   |     9223 | 23-434-2376 |    6 | 9966730733 | Chennai,India |    2 | NULL      |
+| Eashan   | kumar    | Dash       | 23-434-2343 | 15-08-1997 | Male   |   160492 | 23-434-2376 |   10 | 9542869730 | Chennai,India |    3 | NULL      |
+| Maitreya | Siddarth | Rayabharam | 23-434-2376 | 28-06-1998 | Male   |   406192 | 32-423-4535 |   13 | 9790707133 | Chennai,India |    4 | NULL      |
+| Leela    | krishna  | Abbaraju   | 23-434-2876 | 28-06-1993 | Male   |   406842 | 23-434-2376 |   10 | 8185002522 | Chennai,India |    5 | NULL      |
+| Kristen  | Mary     | Stewart    | 43-100-1234 | 23-05-1997 | Female |     9223 | 23-434-2376 |   12 | 8185385566 | Chennai,India |    6 | NULL      |
+| Robert   | Downey   | Junior     | 43-100-2034 | 23-12-1997 | Male   |  1604906 | 23-434-2376 |   10 | 1234567890 | Chennai,India |    7 | NULL      |
+| Priyanka | Quantico | Chopra     | 90-609-3423 | 28-12-1988 | Female | 11395089 | 23-434-2376 |    7 | 1234888890 | Chennai,India |    8 | NULL      |
+| Hrithik  |          | Roshan     | 90-800-2034 | 08-02-1998 | Male   |   304789 | 23-434-2376 |    9 | 2525656536 | Chennai,India |    9 | NULL      |
+| Jennifer |          | Lawrence   | 90-800-2314 | 08-02-1988 | Female |   304789 | 23-434-2376 |   77 | 2525555536 | Chennai,India |   10 | NULL      |
++----------+----------+------------+-------------+------------+--------+----------+-------------+------+------------+---------------+------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> update Employee set join_date = "2017-03-21" where sno%2=0;
+Query OK, 5 rows affected (0.05 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> update Employee set join_date = "1970-03-11" where sno%2=1;
+Query OK, 5 rows affected (0.05 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select Gender,count(*) from Employee where join_date between '1998-06-1
+    '> 4' and '2017-09-05' group by Gender;
++--------+----------+
+| Gender | count(*) |
++--------+----------+
+| Female |        3 |
+| Male   |        2 |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select Gender,count(*) from Employee where join_date between '1998-06-14' and '2017-09-05' group by Gender;
++--------+----------+
+| Gender | count(*) |
++--------+----------+
+| Female |        3 |
+| Male   |        2 |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from mysql.user;
++-----------+------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+-----------------------+-------------------+----------------+
+| Host      | User             | Select_priv | Insert_priv | Update_priv | Delete_priv | Create_priv | Drop_priv | Reload_priv | Shutdown_priv | Process_priv | File_priv | Grant_priv | References_priv | Index_priv | Alter_priv | Show_db_priv | Super_priv | Create_tmp_table_priv | Lock_tables_priv | Execute_priv | Repl_slave_priv | Repl_client_priv | Create_view_priv | Show_view_priv | Create_routine_priv | Alter_routine_priv | Create_user_priv | Event_priv | Trigger_priv | Create_tablespace_priv | ssl_type | ssl_cipher | x509_issuer | x509_subject | max_questions | max_updates | max_connections | max_user_connections | plugin                | authentication_string                     | password_expired | password_last_changed | password_lifetime | account_locked |
++-----------+------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+-----------------------+-------------------+----------------+
+| localhost | root             | Y           | Y           | Y           | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y          | Y               | Y          | Y          | Y            | Y          | Y                     | Y                | Y            | Y               | Y                | Y                | Y              | Y                   | Y                  | Y                | Y          | Y            | Y                      |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *E74858DB86EBA20BC33D0AECAE8A8108C56B17FA | N                | 2017-01-13 21:33:44   |              NULL | N              |
+| localhost | mysql.sys        | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         | N          | N               | N          | N          | N            | N          | N                     | N                | N            | N               | N                | N                | N              | N                   | N                  | N                | N          | N            | N                      |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | N                | 2017-01-13 21:33:40   |              NULL | Y              |
+| localhost | debian-sys-maint | Y           | Y           | Y           | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y          | Y               | Y          | Y          | Y            | Y          | Y                     | Y                | Y            | Y               | Y                | Y                | Y              | Y                   | Y                  | Y                | Y          | Y            | Y                      |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *E2A4E575959AC5C30C42B0CAC08530CD8D44DD84 | N                | 2017-01-13 21:33:44   |              NULL | N              |
++-----------+------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+-----------------------+-------------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc mysql.user
+    -> ;
++------------------------+-----------------------------------+------+-----+-----------------------+-------+
+| Field                  | Type                              | Null | Key | Default               | Extra |
++------------------------+-----------------------------------+------+-----+-----------------------+-------+
+| Host                   | char(60)                          | NO   | PRI |                       |       |
+| User                   | char(32)                          | NO   | PRI |                       |       |
+| Select_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Insert_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Update_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Delete_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Drop_priv              | enum('N','Y')                     | NO   |     | N                     |       |
+| Reload_priv            | enum('N','Y')                     | NO   |     | N                     |       |
+| Shutdown_priv          | enum('N','Y')                     | NO   |     | N                     |       |
+| Process_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| File_priv              | enum('N','Y')                     | NO   |     | N                     |       |
+| Grant_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| References_priv        | enum('N','Y')                     | NO   |     | N                     |       |
+| Index_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Alter_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Show_db_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| Super_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_tmp_table_priv  | enum('N','Y')                     | NO   |     | N                     |       |
+| Lock_tables_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Execute_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| Repl_slave_priv        | enum('N','Y')                     | NO   |     | N                     |       |
+| Repl_client_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_view_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Show_view_priv         | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_routine_priv    | enum('N','Y')                     | NO   |     | N                     |       |
+| Alter_routine_priv     | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_user_priv       | enum('N','Y')                     | NO   |     | N                     |       |
+| Event_priv             | enum('N','Y')                     | NO   |     | N                     |       |
+| Trigger_priv           | enum('N','Y')                     | NO   |     | N                     |       |
+| Create_tablespace_priv | enum('N','Y')                     | NO   |     | N                     |       |
+| ssl_type               | enum('','ANY','X509','SPECIFIED') | NO   |     |                       |       |
+| ssl_cipher             | blob                              | NO   |     | NULL                  |       |
+| x509_issuer            | blob                              | NO   |     | NULL                  |       |
+| x509_subject           | blob                              | NO   |     | NULL                  |       |
+| max_questions          | int(11) unsigned                  | NO   |     | 0                     |       |
+| max_updates            | int(11) unsigned                  | NO   |     | 0                     |       |
+| max_connections        | int(11) unsigned                  | NO   |     | 0                     |       |
+| max_user_connections   | int(11) unsigned                  | NO   |     | 0                     |       |
+| plugin                 | char(64)                          | NO   |     | mysql_native_password |       |
+| authentication_string  | text                              | YES  |     | NULL                  |       |
+| password_expired       | enum('N','Y')                     | NO   |     | N                     |       |
+| password_last_changed  | timestamp                         | YES  |     | NULL                  |       |
+| password_lifetime      | smallint(5) unsigned              | YES  |     | NULL                  |       |
+| account_locked         | enum('N','Y')                     | NO   |     | N                     |       |
++------------------------+-----------------------------------+------+-----+-----------------------+-------+
+45 rows in set (0.00 sec)
+
+mysql> select date(join_date) from Employee
+    -> ;
++-----------------+
+| date(join_date) |
++-----------------+
+| 1970-03-11      |
+| 2017-03-21      |
+| 1970-03-11      |
+| 2017-03-21      |
+| 1970-03-11      |
+| 2017-03-21      |
+| 1970-03-11      |
+| 2017-03-21      |
+| 1970-03-11      |
+| 2017-03-21      |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select date(join_date) from Employee;
++-----------------+
+| date(join_date) |
++-----------------+
+| 1970-03-11      |
+| 2017-03-21      |
+| 1970-03-11      |
+| 2017-03-21      |
+| 1970-03-11      |
+| 2017-03-21      |
+| 1970-03-11      |
+| 2017-03-21      |
+| 1970-03-11      |
+| 2017-03-21      |
++-----------------+
+10 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> exit
